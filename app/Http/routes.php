@@ -11,11 +11,29 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+ Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+// Route::get('home', 'HomeController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+
+// Route::get('/', function()
+// {
+//     return View::make('pages.home');
+// });
+Route::get('about', function()
+{
+    return View::make('pages.about');
+});
+Route::get('projects', function()
+{
+    return View::make('pages.projects');
+});
+Route::get('contact', function()
+{
+    return View::make('pages.contact');
+});
