@@ -189,359 +189,520 @@
         <div class="maincontent">
             <div class="maincontentinner">
                 <div class="row-fluid">
-                    <div id="dashboard-left" class="span8">
+                    <div id="dashboard-left" class="span6">
+                      
+                        <h5 class="subtitle">Daily Statistics</h5>
+                       <!-- <div id="chartplace" style="height:300px;"></div> -->
+                        <div class="form-contorl"> 
+                            {!! Form::open(array('url' => 'site_checker')) !!}
+                             <?php  
+                                    echo Form::text('url', 'example.com',['class' => 'form-contorl']);
+                                    echo Form::submit('Analysis!',['class' => 'btn btn-success btn-small']);
+                              ?>
+                            {!! Form::close() !!}
+                         
+                        </div>
+
+                        <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Moz Check <a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Domain</th>
+                                            <th>DA</th>
+                                            <th>PA</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if( ! empty($url))
+                                                {{$url}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($domain_authority))
+                                                  {{$domain_authority}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                 @if( ! empty($page_authority))
+                                                   {{$page_authority}}
+                                                @endif
+                                            </td>
+                                        <tr>
+                                    </thead>
+                               </table>
+                            </div>
+                        </div>
+
+                         <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Alex Data<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Domain</th>
+                                            <th>Details</th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if( ! empty($url))
+                                                {{$url}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                               
+                                            </td>
+                                           
+                                        <tr>
+                                    </thead>
+                               </table>
+                            </div>
+                        </div>
+
+
+                     
                         
-                        <h5 class="subtitle">Recently Viewed Pages</h5>
-                        <ul class="shortcuts">
+                    </div><!--span8-->
+                    
+                    <div id="dashboard-right" class="span6">
+                        <div class="divider30"></div>
+                        <div class="divider30"></div>
+                          <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Dmoz Check <a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Domain</th>
+                                            <th>Is Listed</th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if( ! empty($url))
+                                                {{$url}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($dmoz))
+                                                  {{$dmoz}}
+                                                @endif
+                                            </td>
+                                        <tr>
+                                    </thead>
+                               </table>
+                            </div>
+                        </div>
+
+                        <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Alexa Rank<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Domain</th>
+                                            <th>Reach Rank </th>
+                                            <th>Top Country</th>
+                                            <th>Top Country Rank</th>
+                                            <th>Traffic Rank </th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if( ! empty($url))
+                                                {{$url}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($alexa_rank['reach_rank']))
+                                                  {{$alexa_rank['reach_rank']}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($alexa_rank['country']))
+                                                {{$alexa_rank['country']}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($alexa_rank['country_rank']))
+                                                  {{$alexa_rank['country_rank']}}
+                                                @endif
+                                            </td>
+                                              <td>
+                                                @if( ! empty($alexa_rank['traffic_rank']))
+                                                  {{$alexa_rank['traffic_rank']}}
+                                                @endif
+                                            </td>
+                                        <tr>
+                                    </thead>
+                               </table>
+                            </div>
+                        </div>
+                                  
+                    </div><!--span4-->
+
+                    <ul class="shortcuts">
                             <li class="events">
                                 <a href="">
-                                    <span class="shortcuts-icon iconsi-event"></span>
-                                    <span class="shortcuts-label">Events</span>
-                                </a>
+                                       <span >Domain Name</span>
+                                            <span class="shortcuts-label" >
+                                                @if( ! empty($url))
+                                                        {{$url}}
+                                                @endif
+                                            </span>
+                                     </a>
                             </li>
                             <li class="products">
                                 <a href="">
-                                    <span class="shortcuts-icon iconsi-cart"></span>
-                                    <span class="shortcuts-label">Products</span>
+                                  <span class="shortcuts-label">Global Rank</span>
+                                   <span>  @if( ! empty($alexa_data['global_rank']))
+                                                {{$alexa_data['global_rank']}}
+                                        @endif</span>
                                 </a>
                             </li>
                             <li class="archive">
                                 <a href="">
-                                    <span class="shortcuts-icon iconsi-archive"></span>
-                                    <span class="shortcuts-label">Archives</span>
+                                    <span class="shortcuts-label">Top Country Rank</span>
+                                     <span> @if( ! empty($alexa_data['country']))
+                                                {{$alexa_data['country']}}
+                                        @endif</span>
                                 </a>
                             </li>
-                            <li class="help">
-                                <a href="">
-                                    <span class="shortcuts-icon iconsi-help"></span>
-                                    <span class="shortcuts-label">Help</span>
-                                </a>
-                            </li>
-                            <li class="last images">
-                                <a href="">
-                                    <span class="shortcuts-icon iconsi-images"></span>
-                                    <span class="shortcuts-label">Images</span>
-                                </a>
-                            </li>
+                           
                         </ul>
-                        
-                        <br />
-                        
-                        <h5 class="subtitle">Daily Statistics</h5><br />
-                        <div id="chartplace" style="height:300px;"></div>
-                        
-                        <div class="divider30"></div>
-                        
-                        <table class="table table-bordered responsive">
-                            <thead>
-                                <tr>
-                                    <th class="head1">Rendering engine</th>
-                                    <th class="head0">Browser</th>
-                                    <th class="head1">Platform(s)</th>
-                                    <th class="head0">Engine version</th>
-                                    <th class="head1">CSS grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet  Explorer 5.5</td>
-                                    <td>Win 95+</td>
-                                    <td class="center">5.5</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 6</td>
-                                    <td>Win 98+</td>
-                                    <td class="center">6</td>
-                                    <td class="center">A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet Explorer 7</td>
-                                    <td>Win XP SP2+</td>
-                                    <td class="center">7</td>
-                                    <td class="center">A</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        
-                        <br />
-                        
-                        <h4 class="widgettitle"><span class="icon-comment icon-white"></span> Recent Comments</h4>
-                        <div class="widgetcontent nopadding">
-                            <ul class="commentlist">
-                                <li>
-                                    <img src="images/photos/thumb2.png" alt="" class="pull-left" />
-                                    <div class="comment-info">
-                                        <h4><a href="">Sed ut perspiciatis unde omnis iste natus error sit voluptatem</a></h4>
-                                        <h5>in <a href="">Sit Voluptatem</a></h5>
-                                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. </p>
-                                        <p>
-                                            <a href="" class="btn btn-success btn-small"><span class="icon-thumbs-up icon-white"></span> Approve</a>
-                                            <a href="" class="btn btn-small"><span class="icon-thumbs-down"></span> Reject</a>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="images/photos/thumb1.png" alt="" class="pull-left" />
-                                    <div class="comment-info">
-                                        <h4><a href="">But I must explain to you how all this mistaken</a></h4>
-                                        <h5>in <a href="">At vero eos et accusamus et iusto odio dignissimos</a></h5>
-                                        <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
-                                        <p>
-                                            <a href="" class="btn btn-success btn-small"><span class="icon-thumbs-up icon-white"></span> Approve</a>
-                                            <a href="" class="btn btn-small"><span class="icon-thumbs-down"></span> Reject</a>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li>
-                                    <img src="images/photos/thumb10.png" alt="" class="pull-left" />
-                                    <div class="comment-info">
-                                        <h4><a href="">On the other hand, we denounce with righteous indignation</a></h4>
-                                        <h5>in <a href="">These cases are perfectly simple and easy to distinguish</a></h5>
-                                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia.</p>
-                                        <p>
-                                            <a href="" class="btn btn-success btn-small"><span class="icon-thumbs-up icon-white"></span> Approve</a>
-                                            <a href="" class="btn btn-small"><span class="icon-thumbs-down"></span> Reject</a>
-                                        </p>
-                                    </div>
-                                </li>
-                                <li><a href="">View More Comments</a></li>
-                            </ul>
-                        </div>
-                        
-                        <br />
-                        
-                        
-                    </div><!--span8-->
-                    
-                    <div id="dashboard-right" class="span4">
-                        
-                        <h5 class="subtitle">Announcements</h5>
-                        
-                        <div class="divider15"></div>
-                        
-                        <div class="alert alert-block">
-                              <button data-dismiss="alert" class="close" type="button">&times;</button>
-                              <h4>Warning!</h4>
-                              <p style="margin: 8px 0">Best check yo self, you're not looking too good. Nulla vitae elit libero, a pharetra augue. Praesent commodo cursus magna.</p>
-                        </div><!--alert-->
-                        
-                        <br />
-                        
-                        <h5 class="subtitle">Summaries</h5>
-                            
-                        <div class="divider15"></div>
-                        
-                        <div class="widgetbox">                        
-                        <div class="headtitle">
-                            <div class="btn-group">
-                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                  <li><a href="#">Action</a></li>
-                                  <li><a href="#">Another action</a></li>
-                                  <li><a href="#">Something else here</a></li>
-                                  <li class="divider"></li>
-                                  <li><a href="#">Separated link</a></li>
-                                </ul>
-                            </div>
-                            <h4 class="widgettitle">Widget Box</h4>
-                        </div>
-                        <div class="widgetcontent">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        </div><!--widgetcontent-->
-                        </div><!--widgetbox-->
-                        
-                        <h4 class="widgettitle">Event Calendar</h4>
-                        <div class="widgetcontent nopadding">
-                            <div id="datepicker"></div>
-                        </div>
-                        
-                        <div class="tabbedwidget tab-primary">
-                            <ul>
-                                <li><a href="#tabs-1"><span class="iconfa-user"></span></a></li>
-                                <li><a href="#tabs-2"><span class="iconfa-star"></span></a></li>
-                                <li><a href="#tabs-3"><span class="iconfa-comments"></span></a></li>
-                            </ul>
-                            <div id="tabs-1" class="nopadding">
-                                <h5 class="tabtitle">Last Logged In Users</h5>
-                                <ul class="userlist">
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb1.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Draniem Daamul</h5>
-                                                <span class="pos">Software Engineer</span>
-                                                <span>Last Logged In: 04/20/2013 8:40PM</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb2.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Therineka Chonpe</h5>
-                                                <span class="pos">Regional Manager</span>
-                                                <span>Last Logged In: 04/20/2013 3:30PM</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb3.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Zaham Sindilmaca</h5>
-                                                <span class="pos">Chief Technical Officer</span>
-                                                <span>Last Logged In: 04/19/2013 1:30AM</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb4.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Annie Cerona</h5>
-                                                <span class="pos">Engineering Manager</span>
-                                                <span>Last Logged In: 04/19/2013 11:30AM</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb5.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Delher Carasbong</h5>
-                                                <span class="pos">Software Engineer</span>
-                                                <span>Last Logged In: 04/19/2013 11:00AM</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="tabs-2" class="nopadding">
-                                <h5 class="tabtitle">Favorites</h5>
-                                <ul class="userlist userlist-favorites">
-                                                                        <li>
-                                        <div>
-                                            <img src="images/photos/thumb3.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Zaham Sindilmaca</h5>
-                                                <p class="link">
-                                                    <a href=""><i class="iconfa-envelope"></i> Message</a>
-                                                    <a href=""><i class="iconfa-phone"></i> Call</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb4.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Annie Cerona</h5>
-                                                <p class="link">
-                                                    <a href=""><i class="iconfa-envelope"></i> Message</a>
-                                                    <a href=""><i class="iconfa-phone"></i> Call</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb5.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Delher Carasbong</h5>
-                                                <p class="link">
-                                                    <a href=""><i class="iconfa-envelope"></i> Message</a>
-                                                    <a href=""><i class="iconfa-phone"></i> Call</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb1.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Draniem Daamul</h5>
-                                                <p class="link">
-                                                    <a href=""><i class="iconfa-envelope"></i> Message</a>
-                                                    <a href=""><i class="iconfa-phone"></i> Call</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb2.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Therineka Chonpe</h5>
-                                                <p class="link">
-                                                    <a href=""><i class="iconfa-envelope"></i> Message</a>
-                                                    <a href=""><i class="iconfa-phone"></i> Call</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="tabs-3" class="nopadding">
-                                <h5 class="tabtitle">Top Comments</h5>
-                                <ul class="userlist">
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb4.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Annie Cerona</h5>
-                                                <p class="par">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb5.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Delher Carasbong</h5>
-                                                <p class="par">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb1.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Draniem Daamul</h5>
-                                                <p class="par">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb2.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Therineka Chonpe</h5>
-                                                <p class="par">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div>
-                                            <img src="images/photos/thumb3.png" alt="" class="pull-left" />
-                                            <div class="uinfo">
-                                                <h5>Zaham Sindilmaca</h5>
-                                                <p class="par">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididun</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!--tabbedwidget-->
-                        
-                        <br />
-                                                
-                    </div><!--span4-->
                 </div><!--row-fluid-->
+                <div class="row-fluid">
+                    <div class="span6">
+                       <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Alexa Traffic Rank<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                                @if( ! empty($alexa_data['traffic_rank_graph']))
+                                 <img src="{{$alexa_data['traffic_rank_graph']}}" />
+                                @endif 
+                            </div>
+                        </div>
+                      </div>
+                     <div class="span6">
+                         <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Visitors per Country<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                                  <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Country</th>
+                                            <th>Percent of Visitors</th>
+                                            <th>Rank in Country</th>
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                       @if( ! empty($alexa_data))
+                                           {{  $sl=0 }}                  
+                                                    @if(is_array($alexa_data['country_name']) && is_array($alexa_data['country_in_rank']) && is_array($alexa_data['country_percent_visitor']))
+                                                         @foreach($alexa_data['country_name'] as $key=>$val)
+                                                            {{$sl++}}
+                                                            @if(array_key_exists($key, $alexa_data['country_name']) && array_key_exists($key, $alexa_data['country_in_rank']) && array_key_exists($key, $alexa_data['country_percent_visitor']))
+                                                                <tr><td>{{$sl}}</td>
+                                                                <td>{{$alexa_data['country_name'][$key]}}</td>
+                                                                <td>{{$alexa_data['country_percent_visitor'][$key]}}</td>
+                                                                <td>{{$alexa_data['country_in_rank'][$key]}}</td></tr>
+                                                            @endif  
+                                                         @endforeach      
+                                                        @if(count($alexa_data['country_name'])==0 || count($alexa_data['country_in_rank'])==0 || count($alexa_data['country_percent_visitor'])==0  )
+                                                        <tr><td colspan='4'>No data found!</td></tr>
+                                                        @endif 
+                                                    @endif
+                                        @else
+                                        <tr><td colspan='4'>No data found!</td></tr>
+                                       @endif 
+                                      </tbody>
+                               </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="row-fluid">
+                    <div class="span12">
+                     <ul class="shortcuts">
+                            <li class="events">
+                                <a href="">
+                                       <span >Daily Page View per Visitor</span>
+                                            <span class="shortcuts-label" >
+                                                @if( ! empty($alexa_data['page_view_per_visitor']))
+                                                        {{$alexa_data['page_view_per_visitor']}}
+                                                @endif
+                                            </span>
+                                     </a>
+                            </li>
+                            <li class="products">
+                                <a href="">
+                                  <span class="shortcuts-label">Daily Time on Site</span>
+                                   <span>  @if( ! empty($alexa_data['daily_time_on_the_site']))
+                                                {{$alexa_data['daily_time_on_the_site']}}
+                                        @endif</span>
+                                </a>
+                            </li>
+                            <li class="archive">
+                                <a href="">
+                                    <span class="shortcuts-label">Visitor % from Search Engines</span>
+                                     <span> @if( ! empty($alexa_data['visitor_percent_from_searchengine']))
+                                                {{$alexa_data['visitor_percent_from_searchengine']}}
+                                        @endif</span>
+                                </a>
+                            </li>
+                           
+                        </ul>
+                      </div>
+                  </div>   
+
+
+                <div class="row-fluid">
+                    <div class="span6">
+                             <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Top Keywords from Search Engines<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <div class="box-body chart-responsive">
+                                     @if( ! empty($alexa_data['keyword_name']))
+                                                    @if(is_array($alexa_data['keyword_name']) && is_array($alexa_data['keyword_percent_of_search_traffic']))
+                                                         @foreach($alexa_data['keyword_name'] as $key=>$val)
+                                                            @if(array_key_exists($key, $alexa_data['keyword_name']) && array_key_exists($key, $alexa_data['keyword_percent_of_search_traffic']) && array_key_exists($key, $alexa_data['country_percent_visitor']))
+                                                                   {{$alexa_data['keyword_name'][$key]}}<span class='pull-right'><b>{{$alexa_data['keyword_percent_of_search_traffic'][$key]}}</b></span>
+                                                                    <div class="progress">					                    	
+                                                                    <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="{{$alexa_data['keyword_percent_of_search_traffic'][$key]}}" aria-valuemin="0" aria-valuemax="100" style="width:'{{$alexa_data['keyword_percent_of_search_traffic'][$key]}}[$key]">
+                                                                    </div>
+                                                                    </div>
+                                                            @endif  
+                                                         @endforeach      
+                                                        @if(count($alexa_data['country_name'])==0 || count($alexa_data['country_in_rank'])==0 || count($alexa_data['country_percent_visitor'])==0  )
+                                                        <tr><td colspan='4'>No data found!</td></tr>
+                                                        @endif 
+                                                    @endif
+                                        @else
+                                        <tr><td colspan='4'>No data found!</td></tr>
+                                       @endif 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                      <div class="span6">
+                       <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Search Traffic<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                                @if( ! empty($alexa_data['search_engine_percentage_graph']))
+                                 <img src="{{$alexa_data['search_engine_percentage_graph']}}" />
+                                @endif 
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="inner">
+                         @if( ! empty($alexa_data['search_engine_percentage_graph']))
+                        <h3><span id="average_stay_time">{{$alexa_data['total_site_linking_in']}}</span></h3>
+                        <p>Total Linking In Site</p>
+                        @endif 
+				    </div>
+                </div>
+                    <div class="span6">
+                           <div class="inner">
+                         @if( ! empty($alexa_data['bounce_rate']))
+                        <h3><span id="average_stay_time">{{$alexa_data['bounce_rate']}}</span></h3>
+                        <p>Bounce Rate</p>
+                        @endif 
+				        </div>
+                    </div>
+                </div>    
+
+
+                 <div class="row-fluid">
+                    <div class="span12">
+                         <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Linking In Statistics<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                                  <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>SL</th>
+                                            <th>Site</th>
+                                            <th>Page</th>
+                                             </tr>
+                                    </thead>
+                                     <tbody>
+                                       @if( !empty($alexa_data))
+                                           {{  $sl=0 }}                  
+                                                    @if(is_array($alexa_data['linking_in_site_name']) && is_array($alexa_data['linking_in_site_address']))
+                                                         @foreach($alexa_data['linking_in_site_name'] as $key=>$val)
+                                                            
+                                                            @if(array_key_exists($key, $alexa_data['linking_in_site_name']) && array_key_exists($key, $alexa_data['linking_in_site_address']))
+                                                                <tr><td>{{$sl}}</td>
+                                                                <td>{{$alexa_data['linking_in_site_name'][$key]}}</td>
+                                                                <td>{{$alexa_data['linking_in_site_address'][$key]}}</td>
+                                                                </tr>
+                                                            @endif  
+                                                         @endforeach      
+                                                        @if(count($alexa_data['linking_in_site_name'])==0 || count($alexa_data['linking_in_site_address'])==0)
+                                                        <tr><td colspan='4'>No data found!</td></tr>
+                                                        @endif 
+                                                    @endif
+                                        @else
+                                        <tr><td colspan='4'>No data found!</td></tr>
+                                       @endif 
+                                      </tbody>
+                               </table>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="row-fluid">
+                      <div class="span6">
+                             <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Upstream Sites<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <div class="box-body chart-responsive">
+                                     @if( ! empty($alexa_data['upstream_site_name']))
+                                                    @if(is_array($alexa_data['upstream_site_name']) && is_array($alexa_data['upstream_percent_unique_visits']))
+                                                         @foreach($alexa_data['upstream_site_name'] as $key=>$val)
+                                                            @if(array_key_exists($key, $alexa_data['upstream_site_name']) && array_key_exists($key, $alexa_data['upstream_percent_unique_visits']))
+                                                                   {{$alexa_data['upstream_site_name'][$key]}}<span class='pull-right'><b>{{$alexa_data['upstream_percent_unique_visits'][$key]}}</b></span>
+                                                                    <div class="progress">					                    	
+                                                                    <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="{{$alexa_data['upstream_percent_unique_visits'][$key]}}" aria-valuemin="0" aria-valuemax="100" style="width:'{{$alexa_data['upstream_percent_unique_visits'][$key]}}[$key]">
+                                                                    </div>
+                                                                    </div>
+                                                            @endif  
+                                                         @endforeach      
+                                                        @if(count($alexa_data['upstream_site_name'])==0 || count($alexa_data['upstream_percent_unique_visits'])==0  )
+                                                        <tr><td colspan='4'>No data found!</td></tr>
+                                                        @endif 
+                                                    @endif
+                                        @else
+                                        <tr><td colspan='4'>No data found!</td></tr>
+                                       @endif 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="span6">
+                             <div class="widgetbox box-success">
+                            <h4 class="widgettitle">Subdomain Statistics<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <div class="box-body chart-responsive">
+                                     @if( ! empty($alexa_data['subdomain_name']))
+                                                    @if(is_array($alexa_data['subdomain_name']) && is_array($alexa_data['subdomain_percent_visitors']))
+                                                         @foreach($alexa_data['subdomain_name'] as $key=>$val)
+                                                            @if(array_key_exists($key, $alexa_data['subdomain_name']) && array_key_exists($key, $alexa_data['subdomain_percent_visitors']))
+                                                                   {{$alexa_data['subdomain_name'][$key]}}<span class='pull-right'><b>{{$alexa_data['subdomain_percent_visitors'][$key]}}</b></span>
+                                                                    <div class="progress">					                    	
+                                                                    <div class="progress-bar progress-bar-striped " role="progressbar" aria-valuenow="{{$alexa_data['subdomain_percent_visitors'][$key]}}" aria-valuemin="0" aria-valuemax="100" style="width:'{{$alexa_data['subdomain_percent_visitors'][$key]}}[$key]">
+                                                                    </div>
+                                                                    </div>
+                                                            @endif  
+                                                         @endforeach      
+                                                        @if(count($alexa_data['subdomain_name'])==0 || count($alexa_data['subdomain_percent_visitors'])==0  )
+                                                        <tr><td colspan='4'>No data found!</td></tr>
+                                                        @endif 
+                                                    @endif
+                                        @else
+                                        <tr><td colspan='4'>No data found!</td></tr>
+                                       @endif 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>    
                 
+                <div class="row-fluid">
+                    <div class="span12">
+                      <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Google Backlink Search<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                               <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Domain</th>
+                                            <th>Back Link Count</th>
+                                          
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if( ! empty($url))
+                                                {{$url}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( ! empty($external_equity_links))
+                                                  {{$external_equity_links}}
+                                                @endif
+                                            </td>
+                                        <tr>
+                                    </thead>
+                               </table>
+                            </div>
+                        </div>
+				    </div>
+                  </div>    
+                </div>  
+
+                 <div class="row-fluid">
+                    <div class="span12">
+                         <div class="widgetbox box-warning">
+                            <h4 class="widgettitle">Social Network Analysis<a class="close">×</a> <a class="minimize">–</a></h4>
+                            <div class="widgetcontent">
+                              @if( ! empty($url))
+                                  <table class="table table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>Facebook Share</th>
+                                            <th>FaceBook Like</th>
+                                            <th>FaceBook Comment</th>
+                                            <th>Google Plus Share</th>
+                                            <th>Linkdin Share</th>
+                                            <th>Buffer Share</th>
+                                            <th>Pintrest Count</th>
+                                            <th>xing_count</th>
+                                            <th>Stumbleupon Total Like</th>
+                                            <th>Stumbleupon Total Comment</th>
+                                            <th>Stumbleupon Total List</th>
+
+                                            <th>Reddit Score</th>
+                                            <th>Reddit Down</th>
+                                            <th>Reddit Ups</th>
+
+                                            
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                      <tr>
+                                             <td>{{$fb['total_share']}}</td>
+                                             <td>{{$fb['total_like']}}</td>
+                                             <td>{{$fb['total_comment']}}</td>
+                                             <td>{{$google_plus_share}}</td>
+                                             <td>{{$linkdin_share}}</td>
+                                             <td>{{$buffer_share}}</td>
+                                             <td>{{$pintrest_count}}</td>
+                                             <td>{{$xing_count}}</td>
+                                             <td>{{$stumbleupon['stumbleupon_total_like']}}</td>
+                                             <td>{{$stumbleupon['stumbleupon_total_comment']}}</td>
+                                             <td>{{$stumbleupon['stumbleupon_total_list']}}</td>
+                                             <td>{{$reddit_share['score']}}</td>
+                                             <td>{{$reddit_share['downs']}}</td>
+                                             <td>{{$reddit_share['ups']}}</td>
+                                      </tr>
+                                     </tbody>
+                               </table>
+                               @endif
+                            </div>
+                        </div>
+                    </div>
+                 </div>  
+
                 <div class="footer">
                     <div class="footer-left">
                         <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>

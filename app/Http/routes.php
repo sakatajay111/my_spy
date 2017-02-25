@@ -11,9 +11,9 @@
 |
 */
 
- Route::get('/', 'WelcomeController@index');
+ Route::get('site_checker', 'CheckerController@index');
 
-// Route::get('home', 'HomeController@index');
+ //Route::get('/', 'HomeController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -21,10 +21,10 @@ Route::controllers([
 ]);
 
 
-// Route::get('/', function()
-// {
-//     return View::make('pages.home');
-// });
+Route::get('/', function()
+{
+    return View::make('pages.home');
+});
 Route::get('about', function()
 {
     return View::make('pages.about');
@@ -37,3 +37,8 @@ Route::get('contact', function()
 {
     return View::make('pages.contact');
 });
+Route::post('/', function() 
+{
+return 'successfull';
+});
+Route::post('site_checker', 'CheckerController@index');
